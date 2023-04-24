@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<CustomerData>
+    <CustomerList>
+        <Id>1</Id>
+        <Name>ОАО ЖилСтройСервис</Name>
+        <BillList>
+            <Id>4</Id>
+            <Amount>389</Amount>
+        </BillList>
+    </CustomerList>
+    <CustomerList>
+        <Id>2</Id>
+        <Name>ООО Ромашка</Name>
+        <BillList>
+            <Id>2</Id>
+            <Amount>0</Amount>
+        </BillList>
+        <BillList>
+            <Id>6</Id>
+            <Amount>3000</Amount>
+        </BillList>
+        <BillList>
+            <Id>1</Id>
+            <Amount>20412</Amount>
+        </BillList>
+    </CustomerList>
+    <CustomerList>
+        <Id>3</Id>
+        <Name>ИП Вася Пупкин</Name>
+        <BillList>
+            <Id>3</Id>
+            <Amount>400</Amount>
+        </BillList>
+        <BillList>
+            <Id>5</Id>
+            <Amount>1400</Amount>
+        </BillList>
+    </CustomerList>
+</CustomerData>
