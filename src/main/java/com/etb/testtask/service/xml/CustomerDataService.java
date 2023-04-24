@@ -29,7 +29,7 @@ public class CustomerDataService {
             customers.add(new Customer(c.getId(), c.getName()));
 
             c.getBillList().forEach(b -> {
-                bills.add(new Bill(b.getId(), c.getId(), b.getAmount()));
+                bills.add(new Bill(b.getId(), customerService.getCustomer(c.getId()), b.getAmount()));
             });
         });
 
@@ -50,7 +50,7 @@ public class CustomerDataService {
             customer.setId(c.getId());
             customer.setName(c.getName());
             customer.setBillList(bills.stream()
-                    .filter(bill -> c.getId() == bill.getCustomerId())
+                    .filter(bill -> c.getId() == bill.getCustomer().getId())
                     .map(this::convertBill)
                     .collect(Collectors.toList()));
             customerData.getCustomerList().add(customer);

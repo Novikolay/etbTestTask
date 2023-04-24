@@ -22,8 +22,9 @@ public class Bill {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "customerId")
-    private int customerId;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer", nullable = false)
+    private Customer customer;
 
     @Column(name = "amount")
     private long amount;

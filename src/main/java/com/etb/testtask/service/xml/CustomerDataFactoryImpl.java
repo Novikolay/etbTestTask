@@ -12,7 +12,7 @@ import java.util.List;
 @Primary
 @Service
 @AllArgsConstructor
-public class CustomerDataFactoryImpl {
+public class CustomerDataFactoryImpl implements CustomerDataFactory {
 
     private final CustomerService customerService;
     private final CustomerDataService customerDataService;

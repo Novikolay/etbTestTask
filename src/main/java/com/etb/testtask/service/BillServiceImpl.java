@@ -41,7 +41,7 @@ public class BillServiceImpl implements BillService {
 
     @Override
     public void updateBill(Bill bill) {
-        billRepository.updateBill(bill.getId(), bill.getCustomerId(), bill.getAmount());
+        billRepository.updateBill(bill.getId(), bill.getCustomer().getId(), bill.getAmount());
     }
 
     @Override
@@ -79,13 +79,13 @@ public class BillServiceImpl implements BillService {
                 .filter(bill -> bill.getId() == iB.getId())
                 .forEach(bill -> {
                     if (bill.getAmount() != iB.getAmount()) {
-                        updateBill(iB.getId(), iB.getCustomerId(), iB.getAmount());
+                        updateBill(iB.getId(), iB.getCustomer().getId(), iB.getAmount());
                     }
                 });
             bills.stream()
                 .filter(bill -> bill.getId() != iB.getId())
                 .forEach(bill -> {
-                    billRepository.addBill(iB.getCustomerId(), iB.getAmount());
+                    billRepository.addBill(iB.getCustomer().getId(), iB.getAmount());
                 });
         });
     }

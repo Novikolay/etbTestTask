@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <title>Просмотр списка клиентов ЭТБ</title>
+</head>
+    <body>
+    <div layout:fragment="content" th:remove="tag" class="container h-200 justify-content-md-center">
+        <div class="row h-200 justify-content-center align-items-center">
+            <div class="col-md-auto table-responsive">
+                <h2>Клиенты</h2>
+                <table id="customersTable" class="table">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Название организации</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="customer, rowStat: ${customers}">
+                        <td col col-lg-2 th:text="${customer.id}" th:field="${customer.id}">ID</td>
+                        <td col col-lg-2 th:text="${customer.name}">Название организации</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

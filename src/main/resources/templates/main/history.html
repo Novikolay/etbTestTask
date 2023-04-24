@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <title>Просмотр истории операций по счетам клиентов ЭТБ</title>
+</head>
+    <body>
+    <div layout:fragment="content" th:remove="tag" class="container h-200 justify-content-md-center">
+        <div class="row h-200 justify-content-center align-items-center">
+            <div class="col-md-auto table-responsive">
+                <h2>История</h2>
+                <table id="customersTable" class="table">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Дата транзакции</th>
+                        <th>ID счета</th>
+                        <th>Тип операции</th>
+                        <th>Дельта</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="action, rowStat: ${actions}">
+                        <td col col-lg-2 th:text="${action.id}" th:field="${action.id}">ID</td>
+                        <td col col-lg-2 th:text="${action.dateTime}">Дата транзакции</td>
+                        <td col col-lg-2 th:text="${action.billId}">ID счета</td>
+                        <td col col-lg-2 th:text="${action.actionType}">Тип операции</td>
+                        <td col col-lg-2 th:text="${action.amount}">Дельта</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

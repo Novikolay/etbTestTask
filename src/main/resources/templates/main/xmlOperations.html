@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <title>Импорт/Экспорт в XML</title>
+</head>
+    <body>
+    <div layout:fragment="content" th:remove="tag" class="container justify-content-md-center">
+        <div class="col-md-auto ustify-content-md-center align-items-center">
+            <div class="row-md-auto">
+                <h2>Экспорт данных в XML</h2>
+            </div>
+            <div class="row-md-auto">
+            <form action="#" th:action="'/exportCustomerList'" method="post" enctype="multipart/form-data">
+                <div class="input-group">
+                    <div class="col">
+                        <div class="row"><div class=" col-md-10 center">
+                            <button class="btn btn-outline-secondary btn-block" type="submit" name="upload-submit" id="btnSubmit01" value="upload" data-toggle="modal" data-target="#modal">Экспорт</button>
+                        </div></div>
+                    </div>
+                </div>
+            </form>
+            </div>
+        </div>
+        <div class="col-md-auto ustify-content-md-center align-items-center">
+            <div class="row-md-auto">
+                <h2>Импорт данных в XML</h2>
+            </div>
+            <div class="row-md-auto">
+            <form action="#" th:action="'/importCustomerList'" method="post" enctype="multipart/form-data">
+                <div class="input-group">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-md-10 center">
+                                <div class="form-row">
+                                    <div class="col">
+                                        <input type="text" class="form-control" placeholder="Тело xml для загрузки" name="body" >
+                                    </div>
+                                </div>
+<!--                                <div class="custom-file col">-->
+<!--                                    <input text="Выбрать файл" type="file" class="custom-file-input" id="path" name="path" aria-describedby="btnSubmit">-->
+<!--                                    <label class="custom-file-label" for="path">Файл xml для загрузки</label>-->
+<!--                                </div>-->
+                            </div>
+                        </div>
+                        <div class="row"><div class=" col-md-10 center">
+                            <button class="btn btn-outline-secondary btn-block" type="submit" name="upload-submit" id="btnSubmit02" value="upload" data-toggle="modal" data-target="#modal">Импорт</button>
+                        </div></div>
+                    </div>
+                </div>
+            </form>
+            </div>
+        </div>
+        <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalLabel">XML обпработан</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col">
+                            <div class="row">
+                                <div class="col">
+                                    <a href="/customers" class="btn btn-primary btn-block" role="button">На страницу списка клиентов</a>
+                                </div>
+                                <div class="col">
+                                    <a href="/bills" class="btn btn-primary btn-block" role="button">На страницу списка счетов</a>
+                                </div>
+                            </div>
+                            <div class="row"><div class="col">
+                                <a href="/info" class="btn btn-warning btn-block" role="button">На главную</a>
+                            </div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+</body>
+</html>

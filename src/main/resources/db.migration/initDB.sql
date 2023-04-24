@@ -15,6 +15,10 @@ CREATE TABLE IF NOT EXISTS public.bills (
     CONSTRAINT bill_id_pk PRIMARY KEY (id)
 );
 
+ALTER TABLE public.bills
+    ADD CONSTRAINT fk_bill_customers FOREIGN KEY (customerId)
+        REFERENCES public.customers (id) ON UPDATE CASCADE ON DELETE RESTRICT;
+
 CREATE TABLE IF NOT EXISTS public.actions (
     id serial NOT NULL,
     dateTime timestamp without time zone NOT NULL,

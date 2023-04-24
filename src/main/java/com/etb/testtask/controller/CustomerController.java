@@ -3,7 +3,7 @@ package com.etb.testtask.controller;
 import com.etb.testtask.model.Customer;
 import com.etb.testtask.model.RestResponse;
 import com.etb.testtask.service.CustomerService;
-import com.etb.testtask.service.xml.CustomerDataFactoryImpl;
+import com.etb.testtask.service.xml.CustomerDataFactory;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/customers")
+@RequestMapping(value = "/api/customers")
 @AllArgsConstructor
 public class CustomerController {
 
     private final CustomerService customerService;
-    private final CustomerDataFactoryImpl customerDataFactory;
+    private final CustomerDataFactory customerDataFactory;
 
     @GetMapping(value = "/{customerId:\\d+}")
     public Customer getCustomer(@PathVariable int customerId) {

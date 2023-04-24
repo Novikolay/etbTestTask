@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <title>Просмотр счетов клиентов ЭТБ</title>
+</head>
+    <body>
+    <div layout:fragment="content" th:remove="tag" class="container h-200 justify-content-md-center">
+        <div class="row h-200 justify-content-center align-items-center">
+            <div class="col-md-auto table-responsive">
+                <h2>Счета</h2>
+                <table id="billsTable" class="table">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Владелец</th>
+                        <th>Сумма</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="bill, rowStat: ${bills}">
+                        <td col col-lg-2 th:text="${bill.id}" th:field="${bill.id}">ID</td>
+                        <td col col-lg-2 th:text="${bill.customer.getName()}">Владелец</td>
+                        <td col col-lg-2 th:text="${bill.amount}">Остаток</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

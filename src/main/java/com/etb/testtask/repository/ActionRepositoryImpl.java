@@ -20,7 +20,7 @@ public class ActionRepositoryImpl implements ActionRepository {
             "insert into actions (dateTime, billId, actionType, amount) " +
                     "values (:dateTime, :billId, :actionId, :amount)";
     private static final String SQL_GET_ACTION_HISTORY =
-            "select * actions";
+            "select * from actions";
 
     private ActionMapper actionMapper;
     private NamedParameterJdbcTemplate jdbcTemplate;

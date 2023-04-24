@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <title>Дебит/Кредит</title>
+</head>
+    <body>
+    <div layout:fragment="content" th:remove="tag" class="container justify-content-md-center">
+        <div class="col-md-auto ustify-content-md-center align-items-center">
+            <div class="row-md-auto">
+                <h2>Дебит счета</h2>
+            </div>
+            <div class="row-md-auto">
+            <form action="#" th:action="'/calcDebit'" method="post" enctype="multipart/form-data">
+                <div class="input-group">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-md-10 center">
+                                <div class="form-row">
+                                    <div class="col">
+                                        <input type="text" class="form-control" placeholder="Счет кредита" name="creditId">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <input type="text" class="form-control" placeholder="Счет дебита" name="debitId">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <input type="text" class="form-control" placeholder="Сумма" name="amount">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row"><div class=" col-md-10 center">
+                            <button class="btn btn-outline-secondary btn-block" type="submit" name="upload-submit" id="btnSubmit01" value="upload" data-toggle="modal" data-target="#modal">Go</button>
+                        </div></div>
+                    </div>
+                </div>
+            </form>
+            </div>
+        </div>
+        <div class="col-md-auto ustify-content-md-center align-items-center">
+            <div class="row-md-auto">
+                <h2>Кредит счета</h2>
+            </div>
+            <div class="row-md-auto">
+            <form action="#" th:action="'/calcCredit'" method="post" enctype="multipart/form-data">
+                <div class="input-group">
+                    <div class="col">
+                        <div class="row">
+                            <div class="col-md-10 center">
+                                <div class="form-row">
+                                    <div class="col">
+                                        <input type="text" class="form-control" placeholder="Счет кредита" name="creditId">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <input type="text" class="form-control" placeholder="Счет дебита" name="debitId">
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <input type="text" class="form-control" placeholder="Сумма" name="amount">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row"><div class=" col-md-10 center">
+                            <button class="btn btn-outline-secondary btn-block" type="submit" name="upload-submit" id="btnSubmit02" value="upload" data-toggle="modal" data-target="#modal">Go</button>
+                        </div></div>
+                    </div>
+                </div>
+            </form>
+            </div>
+        </div>
+        <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalLabel">Операция осуществлена</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

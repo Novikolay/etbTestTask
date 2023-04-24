@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <title>Операции со счетами ЭТБ</title>
+</head>
+<body>
+<div layout:fragment="content" th:remove="tag">
+    <div class="col-md-7 h-100 justify-content-center align-items-center">
+        <h2>404 - Resource not found</h2>
+        <p>The requested resource was not found; template - specific</p>
+        <p th:text="${error}">Error Info</p>
+        <p th:text="${status}">Status</p>
+    </div>
+</div>
+</body>
+</html>

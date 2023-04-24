@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/actions")
+@RequestMapping(value = "/api/actions")
 @AllArgsConstructor
 public class ActionController {
 
