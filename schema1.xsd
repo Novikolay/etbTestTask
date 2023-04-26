@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="CustomerData">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="CustomerList" type="CustomerList" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="CustomerList">
+    <xs:all>
+      <xs:element name="Id" type="xs:int"/>
+      <xs:element name="Name" type="xs:string"/>
+      <xs:element name="BillList" type="BillList" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:all>
+  </xs:complexType>
+
+  <xs:complexType name="BillList">
+    <xs:all>
+      <xs:element name="Id" type="xs:int"/>
+      <xs:element name="Amount" type="xs:long"/>
+    </xs:all>
+  </xs:complexType>
+</xs:schema>
+

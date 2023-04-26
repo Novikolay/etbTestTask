@@ -6,6 +6,7 @@ import com.etb.testtask.repository.ActionRepository;
 import com.etb.testtask.repository.BillRepository;
 import com.etb.testtask.utils.EntityNotFoundException;
 import lombok.AllArgsConstructor;
+import lombok.extern.java.Log;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +15,10 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.atomic.AtomicReference;
 
+@Log
 @Primary
 @Service
 @AllArgsConstructor
@@ -74,19 +78,33 @@ public class BillServiceImpl implements BillService {
     public void importBills(List<Bill> importedBills) {
         List<Bill> bills = getAll();
 
+        AtomicReference<Boolean> isPresent = new AtomicReference<>(false);
+
         importedBills.forEach(iB -> {
-            bills.stream()
-                .filter(bill -> bill.getId() == iB.getId())
-                .forEach(bill -> {
-                    if (bill.getAmount() != iB.getAmount()) {
-                        updateBill(iB.getId(), iB.getCustomer().getId(), iB.getAmount());
-                    }
-                });
-            bills.stream()
-                .filter(bill -> bill.getId() != iB.getId())
-                .forEach(bill -> {
-                    billRepository.addBill(iB.getCustomer().getId(), iB.getAmount());
-                });
+            if (!isPresent.get()) {
+                bills.stream()
+                    .filter(bill -> bill.getId() == iB.getId())
+                    .forEach(bill -> {
+                        if (bill.getAmount() != iB.getAmount()) {
+                            updateBill(iB.getId(), iB.getCustomer().getId(), iB.getAmount());
+                        }
+                        log.info(String.format(
+                            "updateBill - ID: %s, CustomerName: %s, Amount: %s",
+                            iB.getId(), iB.getCustomer().getId(), iB.getAmount()));
+                        isPresent.set(true);
+                    });
+            }
+            if (!isPresent.get()) {
+                bills.stream()
+                    .filter(bill -> bill.getId() != iB.getId())
+                    .forEach(bill -> {
+                        log.info(String.format(
+                                "addBill - ID: %s, CustomerName: %s, Amount: %s",
+                                iB.getId(), iB.getCustomer().getId(), iB.getAmount()));
+                        isPresent.set(true);
+                        billRepository.addBill(iB.getCustomer().getId(), iB.getAmount());
+                    });
+            }
         });
     }
 

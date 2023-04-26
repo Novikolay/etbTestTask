@@ -28,9 +28,11 @@ public class CustomerDataService {
         customerData.getCustomerList().forEach(c -> {
             customers.add(new Customer(c.getId(), c.getName()));
 
-            c.getBillList().forEach(b -> {
-                bills.add(new Bill(b.getId(), customerService.getCustomer(c.getId()), b.getAmount()));
-            });
+            if(c.getBillList() != null) {
+                c.getBillList().forEach(b -> {
+                    bills.add(new Bill(b.getId(), customerService.getCustomer(c.getId()), b.getAmount()));
+                });
+            }
         });
 
         customerService.importCustomers(customers);

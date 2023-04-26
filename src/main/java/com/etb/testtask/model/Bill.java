@@ -2,10 +2,7 @@ package com.etb.testtask.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -20,6 +17,8 @@ public class Bill {
 
     @Id
     @Column(name = "id")
+    @SequenceGenerator(name = "billsIdSeq", sequenceName = "bills_id_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "billsIdSeq")
     private int id;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

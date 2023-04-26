@@ -24,7 +24,7 @@ public class BillRepositoryImpl implements BillRepository {
     private static final String SQL_GET_UPDATE_BILL =
             "update bills set customerId = :customerId, amount = :amount where id = :id";
     private static final String SQL_GET_ADD_BILL =
-            "insert into bills (customerId, amount) values (:customerId, :amount)";
+            "insert into bills (id, customerId, amount) values (NEXTVAL('bills_id_seq'), :customerId, :amount)";
 
     private final BillMapper billMapper;
     private final NamedParameterJdbcTemplate jdbcTemplate;

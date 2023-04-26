@@ -11,8 +11,12 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -98,24 +102,18 @@ public class WebController {
         return new ModelAndView("main/xmlOperations");
     }
 
-    @ApiOperation(
-            value = "Экспорт списка клиентов",
-            notes = "XML export"
-    )
-    @PostMapping(value = "/exportCustomerList")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public RestResponse exportCustomerList() {
-        return new RestResponse(customerDataFactory.exportCustomerData());
+    @RequestMapping(value = "/exportCustomerList", method=RequestMethod.POST)
+    public ModelAndView exportCustomerList() {
+        return new ModelAndView("main/xmlOperations")
+                .addObject("exportCustomerListData",
+                        customerDataFactory.exportCustomerData());
     }
 
-    @ApiOperation(
-            value = "Импорт списка клиентов",
-            notes = "XML import"
-    )
     @PostMapping(value = "/importCustomerList")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public List<Customer> importCustomerList(@RequestBody String body) {
-        return customerDataFactory.importCustomerData(body);
+    public void importCustomerList(
+            String xmlImportBody) {
+        customerDataFactory.importCustomerData(xmlImportBody);
     }
 
 }

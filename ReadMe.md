@@ -130,6 +130,3 @@ http://localhost:8888/
     </CustomerList>
 </CustomerData>
 ```
-
-### Текущие ошибки
-- Испорт/экспорт XML работает только в swagger 

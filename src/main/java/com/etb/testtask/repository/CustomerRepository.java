@@ -10,5 +10,5 @@ public interface CustomerRepository  {
     List<Customer> getAll();
 
     void updateCustomer(int id, String name);
-    void addCustomer(String name);
+    void addCustomer(int id, String name);
 }

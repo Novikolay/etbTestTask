@@ -22,7 +22,7 @@ public class CustomerRepositoryImpl implements CustomerRepository {
     private static final String SQL_GET_UPDATE_CUSTOMER =
             "update customers set name = :name where id = :id";
     private static final String SQL_GET_ADD_CUSTOMER =
-            "insert into customers (name) values (:name)";
+            "insert into customers (id, name) values (NEXTVAL('customers_id_seq'), :name)";
 
     private final CustomerMapper customerMapper;
     private final NamedParameterJdbcTemplate jdbcTemplate;
@@ -56,8 +56,9 @@ public class CustomerRepositoryImpl implements CustomerRepository {
     }
 
     @Override
-    public void addCustomer(String name) {
+    public void addCustomer(int id, String name) {
         var params = new MapSqlParameterSource();
+        params.addValue("id", id);
         params.addValue("name", name);
         jdbcTemplate.update(SQL_GET_ADD_CUSTOMER, params);
     }

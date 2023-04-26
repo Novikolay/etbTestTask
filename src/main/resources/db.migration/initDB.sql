@@ -1,23 +1,26 @@
-DROP TABLE IF EXISTS public.customers;
 DROP TABLE IF EXISTS public.bills;
+DROP TABLE IF EXISTS public.customers;
 DROP TABLE IF EXISTS public.actions;
+DROP SEQUENCE IF EXISTS customers_id_seq;
+DROP SEQUENCE IF EXISTS bills_id_seq;
 
 CREATE TABLE IF NOT EXISTS public.customers (
-    id   serial NOT NULL,
-    name character varying(100) NOT NULL,
-    CONSTRAINT customer_id_pk PRIMARY KEY (id)
+    id   integer NOT NULL PRIMARY KEY,
+    name character varying(100) NOT NULL
 );
+CREATE SEQUENCE customers_id_seq START WITH 4 INCREMENT BY 1;
+
 
 CREATE TABLE IF NOT EXISTS public.bills (
-    id         serial NOT NULL,
+    id         integer NOT NULL PRIMARY KEY,
     customerId integer NOT NULL,
-    amount     integer NOT NULL,
-    CONSTRAINT bill_id_pk PRIMARY KEY (id)
+    amount     integer NOT NULL
 );
+CREATE SEQUENCE bills_id_seq START WITH 7 INCREMENT BY 1;
 
 ALTER TABLE public.bills
-    ADD CONSTRAINT fk_bill_customers FOREIGN KEY (customerId)
-        REFERENCES public.customers (id) ON UPDATE CASCADE ON DELETE RESTRICT;
+ADD CONSTRAINT fk_bill_customers FOREIGN KEY (customerId)
+REFERENCES public.customers (id) ON UPDATE CASCADE ON DELETE RESTRICT;
 
 CREATE TABLE IF NOT EXISTS public.actions (
     id serial NOT NULL,
